@@ -1,41 +1,45 @@
 #include "main.h"
 /**
- * _printf - format and print data
- * @format: string to print
- * Return: length, or -1 in case of failure
+ * _printf - is a function that selects the correct function to print.
+ * @format: identifier to look for.
+ * Return: the length of the string.
  */
-int _printf(const char *format, ...)
+int _printf(const char * const format, ...)
 {
-	va_list call;
-	unsigned int i, length = 0;
+	convert_match m[] = {
+		{"%s", printf_string}, {"%c", ALXprintf_char},
+		{"%%", ALXprintf_37},
+		{"%i", ALXprintf_int}, {"%d", ALXprintf_dec}, {"%r", ALXprintf_srev},
+		{"%R", ALXprintf_rot13}, {"%b", ALXprintf_bin}, {"%u", printf_unsigned},
+		{"%o", ALXprintf_oct}, {"%x", printf_hex}, {"%X", ALXprintf_H},
+		{"%S", ALXprintf_string}, {"%p", ALXprintf}
+	};
 
-	va_start(call, format);
+	va_list args;
+	int i = 0, j, len = 0;
 
-	if (!format || (format[0] == '%' && format[1] == '\0'))
+	va_start(args, format);
+	if (format == NULL || (format[0] == '%' && format[1] == '\0'))
 		return (-1);
-	for (i = 0; format[i] != '\0'; i++) /*runs along the chain*/
+
+Here:
+	while (format[i] != '\0')
 	{
-		if (format[i] == '%')
+		j = 13;
+		while (j >= 0)
 		{
-			if (format[i + 1] == '%')
-			{   _putchar('%');
-				i = i + 1;
-				length++;
+			if (m[j].id[0] == format[i] && m[j].id[1] == format[i + 1])
+			{
+				len += m[j].f(args);
+				i = i + 2;
+				goto Here;
 			}
-			else if (mod_character_s(format, i + 1) != '\0')
-			{   length += mod_character_s(format, i + 1)(call);
-				i = i + 1;
-			}
-			else
-			{ _putchar(format[i]);
-				length++;
-			}
+			j--;
 		}
-		else
-		{ _putchar(format[i]);
-			length++;
-		}
+		_putchar(format[i]);
+		len++;
+		i++;
 	}
-	va_end(call);
-	return (length);
+	va_end(args);
+	return (len);
 }
