@@ -1,11 +1,11 @@
-#include "main.h"
+#include "holberton.h"
 
 /**
- * ALXprintf_char - prints a char.
+ * printf_char - prints a char.
  * @val: arguments.
  * Return: 1.
  */
-int ALXprintf_char(va_list val)
+int printf_char(va_list val)
 {
 	char s;
 

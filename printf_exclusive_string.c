@@ -1,11 +1,11 @@
-#include "main.h"
+#include "holberton.h"
 /**
- * ALXprintf_string - print exclusuives string.
+ * printf_exclusive_string - print exclusuives string.
  * @val: argumen t.
  * Return: the length of the string.
  */
 
-int ALXprintf_string(va_list val)
+int printf_exclusive_string(va_list val)
 {
 	char *s;
 	int i, len = 0;
@@ -27,7 +27,7 @@ int ALXprintf_string(va_list val)
 				_putchar('0');
 				len++;
 			}
-			len = len + ALXprintf_HEX(cast);
+			len = len + printf_HEX_aux(cast);
 		}
 		else
 		{

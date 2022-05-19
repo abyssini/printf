@@ -1,11 +1,11 @@
-#include "main.h"
+#include "holberton.h"
 
 /**
- * ALXprintf_oct - prints an octal number.
+ * printf_oct - prints an octal number.
  * @val: arguments.
  * Return: counter.
  */
-int ALXprintf_oct(va_list val)
+int printf_oct(va_list val)
 {
 	int i;
 	int *array;

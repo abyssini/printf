@@ -1,11 +1,11 @@
-#include "main.h"
+#include "holberton.h"
 
 /**
- * ALXprintf - prints an hexgecimal number.
+ * printf_pointer - prints an hexgecimal number.
  * @val: arguments.
  * Return: counter.
  */
-int ALXprint(va_list val)
+int printf_pointer(va_list val)
 {
 	void *p;
 	char *s = "(nil)";
@@ -26,6 +26,6 @@ int ALXprint(va_list val)
 	a = (unsigned long int)p;
 	_putchar('0');
 	_putchar('x');
-	b = ALXprintf_HEX(a);
+	b = printf_hex_aux(a);
 	return (b + 2);
 }
